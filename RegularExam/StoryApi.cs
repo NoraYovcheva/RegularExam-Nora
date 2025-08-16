@@ -82,7 +82,7 @@ namespace RegularExam
                 Url = ""
             };
 
-            var request = new RestRequest("/api/Story/Create", Method.Post);
+            var request = new RestRequest($"/api/Story/Create", Method.Post);
             request.AddJsonBody(storyRequest);
             var response = this.client.Execute(request);
             var createResponse = JsonSerializer.Deserialize<JsonElement>(response.Content);
@@ -142,7 +142,7 @@ namespace RegularExam
                 Title = "",
                 Description = ""
             };
-            var request = new RestRequest("/api/Story/Create", Method.Post);
+            var request = new RestRequest($"/api/Story/Create", Method.Post);
             request.AddJsonBody(story);
             var response = client.Execute(request);
 
@@ -158,7 +158,7 @@ namespace RegularExam
                 Description = "This is a new story description"
             };
 
-            var request = new RestRequest("/api/Story/Edit/NewStory", Method.Put);
+            var request = new RestRequest($"/api/Story/Edit/NewStory", Method.Put);
             request.AddJsonBody(changes);
             var response = client.Execute(request);
 
@@ -169,7 +169,7 @@ namespace RegularExam
         [Test, Order(7)]
         public void DeleteNonExistingStory_ReturnBadRequest()
         {
-            var request = new RestRequest("/api/Story/Delete/NewStory", Method.Delete);
+            var request = new RestRequest($"/api/Story/Delete/NewStory", Method.Delete);
             var response = client.Execute(request);
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
